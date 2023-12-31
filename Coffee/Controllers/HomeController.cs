@@ -27,12 +27,63 @@ namespace Coffee.Controllers
 
         public ActionResult Index()
         {
-            
+            //Lấy ra 4 sản phẩm bán chạy nhất
+            ViewBag.SPBanChayNhat = db.SanPhams.Take(4).ToList();
+            var danhMucs = db.DanhMucs.OrderBy(x => x.TenDanhMuc).ToList();
+            ViewBag.DanhMucSP = danhMucs;
+            ViewBag.FirstDanhMuc = danhMucs.FirstOrDefault();
+
             return View();
         }
 
+        public ActionResult ThemVaoGio(ChiTietDonHangsDtoEdit model)
+        {
+            try
+            {
 
-        
+                //Lấy ra sp ứng với sp Khách hàng đặt
+                SanPham sp;
+
+                sp = db.SanPhams.FirstOrDefault(x => x.id == model.id_sanpham);
+                model.DonGia = sp.Gia;
+                model.TenSanPham = sp.TenSanPham;
+                model.MoTa = sp.MoTa;
+                model.HinhAnh = sp.HinhAnh;
+
+                //Nếu là sản phẩm thêm vào giỏ đầu tiên
+                if (Session["donhang"] == null)
+                {
+                    var donhang = new DonHangsDtoEdit();
+                    donhang.ChiTietDonHangsDtoEdit.Add(model);
+                    Session["donhang"] = donhang;
+                }
+                else
+                {
+                    //Nếu đã có sản phẩm trong giỏ hàng rồi
+                    var donhang = Session["donhang"] as DonHangsDtoEdit;
+                    var matHangTrongGio = donhang.ChiTietDonHangsDtoEdit.FirstOrDefault(x => x.id_sanpham == model.id_sanpham && x.Size == model.Size);
+                    //Nếu mặt hàng này đã có trong giỏ => cập nhật số lượng
+                    if (matHangTrongGio != null)
+                    {
+                        matHangTrongGio.SoLuong += model.SoLuong;
+                        if (!string.IsNullOrEmpty(model.GhiChu))
+                        {
+                            matHangTrongGio.GhiChu = model.GhiChu;
+                        }
+                    }
+                    else
+                    {
+                        donhang.ChiTietDonHangsDtoEdit.Add(model);
+                    }
+                    Session["donhang"] = donhang;
+                }
+                return Json(new { status = 1, message = "Đã thêm sản phẩm này vào giỏ", total = (Session["donhang"] as DonHangsDtoEdit).ChiTietDonHangsDtoEdit.Count });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { status = -1, message = ex.Message });
+            }
+        }
 
 
 

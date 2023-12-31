@@ -1,33 +1,149 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+@using Coffee.Models;
+@{
+    var FirstDanhMuc = ViewBag.FirstDanhMuc as DanhMuc;
+    int id_danhmuc = 0;
+    if (FirstDanhMuc != null)
+    {
+        id_danhmuc = FirstDanhMuc.id;
+    }
+}
+<script>
+    
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+        var id_sanpham = 0;
+        //click nút Thêm vào giỏ
+        $('#modal').on('click', '.btn-submit', function (e) {
+
+            e.preventDefault();
+            if (!validateModal()) {
+                return false;
+            }
+
+            var formData = new FormData();
+
+            var SoLuong = $("input[name='SoLuong']").val();
+            formData.append("SoLuong", SoLuong);
+
+            var Size = $("input[name='Size']:checked").val() ?? "";
+            formData.append("Size", Size);
+
+            var SoLuong = $("input[name='SoLuong']").val();
+            formData.append("SoLuong", SoLuong);
+
+            var GhiChu = $("input[name='GhiChu']").val();
+            formData.append("GhiChu", GhiChu);
+
+            formData.append("id_sanpham", id_sanpham);
+            $(this).prop("disabled", true);
+            $.ajax({
+                method: 'POST',
+                url: "/Home/ThemVaoGio",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    if (res.status == 1) {
+                        ToastMessage(res.message);
+                        $('#SoLuongSanPhamTrongGio').html(res.total);
+                        $("#modal").modal("hide");
+                    }
+                    else {
+                        ToastMessage(res.message, false);
+                    }
+                    $('#modal .btn-submit').prop("disabled", false);
+                }
+            });
+        })
+
+
+        
+    })
+</script>
+
+<section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image: url(/Assets/images/bg_1.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                <div class="col-md-8 col-sm-12 text-center ftco-animate">
+                    <span class="subheading">Giới thiệu</span>
+                    <h2 class="mb-4">Coffee Blend - Tự hào thương hiệu Việt</h2>
+                    <p class="mb-4 mb-md-5">Là một thành viên của Tập đoàn KIDO, Coffee Blend đang kế thừa và sở hữu nhiều lợi thế với mong muốn mang sản phẩm cao cấp nhất đến khách hàng không chỉ qua hương vị đầy trải nghiệm, mà còn thưởng thức cả câu chuyện đầy tự hào về văn hoá và con người Việt Nam.</p>
+                    <p> <a href="/thuc-don" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Xem Menu</a></p>
+                </div>
+
+            </div>
+        </div>
     </div>
-</main>
+
+    <div class="slider-item" style="background-image: url(/Assets/images/bg_2.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                <div class="col-md-8 col-sm-12 text-center ftco-animate">
+                    <span class="subheading">Sứ mệnh</span>
+                    <h2 class="mb-4">Mang niềm tin đến khách hàng</h2>
+                    <p class="mb-4 mb-md-5">Coffee Blend mong muốn mang đến cho khách hàng các món Trà và Cà Phê được biến tấu đặc biệt từ những nguyên liệu thuần Việt và kiểm soát chặt chẽ từ khâu sản xuất đến thành phẩm bởi đội ngũ phát triển đầu ngành.</p>
+                    <p><a href="/thuc-don" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Xem Menu</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+<section class="ftco-about d-md-flex">
+    <div class="one-half img" style="background-image: url(/Assets/images/about.jpg);"></div>
+    <div class="one-half ftco-animate">
+        <div class="overlap">
+            <div class="heading-section ftco-animate ">
+                <h2 class="mb-4">Câu chuyện</h2>
+            </div>
+            <div>
+                <p>Coffee Blend ® được thành lập vào năm 1999, bắt nguồn từ tình yêu dành cho đất Việt cùng với cà phê và cộng đồng nơi đây. Ngay từ những ngày đầu tiên, mục tiêu của chúng mình là có thể phục vụ và góp phần phát triển cộng đồng bằng cách siết chặt thêm sự kết nối và sự gắn bó giữa người với người.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <h2 class="mb-4">Sản phẩm bán chạy nhất</h2>
+                <p>Sảng khoái với thức uống đá xay phong cách Việt. Coffee Blend là thức uống đá xay mát lạnh được pha chế từ những nguyên liệu thuần túy của Việt Nam</p>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in ViewBag.SPBanChayNhat as List<SanPham>)
+            {
+                <div class="col-md-3">
+                    <div class="menu-entry">
+                        <a href="/thong-tin-san-pham?id=@item.id" class="img" style="background-image: url(/Assets/images/@item.HinhAnh);"></a>
+                        <div class="text text-center pt-4">
+                            <h3><a href="/thong-tin-san-pham?id=@item.id">@item.TenSanPham</a></h3>
+                            <p>@item.MoTa</p>
+                            <p class="price"><span>@string.Format("{0:#,###}", item.Gia) ₫</span></p>
+                            <p><a href="#" data-id="@item.id" class="btn btn-primary btn-outline-primary btn-try-now">Đặt ngay</a></p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>
+
+
+
