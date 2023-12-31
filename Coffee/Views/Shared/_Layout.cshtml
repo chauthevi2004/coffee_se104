@@ -1,39 +1,129 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>Coffee - Thương hiệu Việt</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+
+    <link rel="stylesheet" href="/Assets/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/Assets/css/animate.css">
+
+    <link rel="stylesheet" href="/Assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/Assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/Assets/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="/Assets/css/aos.css">
+
+    <link rel="stylesheet" href="/Assets/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="/Assets/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/Assets/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="/Assets/css/flaticon.css">
+    <link rel="stylesheet" href="/Assets/css/icomoon.css">
+    <link rel="stylesheet" href="/Assets/css/style.css">
+    <script src="/Assets/js/jquery.min.js"></script>
+
+    <link href="~/Assets/css/jquery.toast.min.css" rel="stylesheet" />
+    <link href="~/Assets/css/jquery-confirm.min.css" rel="stylesheet" />
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/jquery.toast.min.js"></script>
+    <script src="~/Assets/js/AutoNumeric/AutoNumeric.js"></script>
+    <script src="~/Assets/js/jquery-confirm.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    @Html.Action("NavBar", "Home")
+    <!-- END nav -->
+    @RenderBody()
+
+    <footer class="ftco-footer ftco-section img">
+        <div class="overlay"></div>
         <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
+            <div class="row mb-5">
+                <div class="col-lg-6 col-md-6 mb-5 mb-md-5">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Về chúng tôi</h2>
+                        <p>Coffee Blend ® được thành lập vào năm 1999, bắt nguồn từ tình yêu dành cho đất Việt cùng với cà phê và cộng đồng nơi đây. Ngay từ những ngày đầu tiên, mục tiêu của chúng mình là có thể phục vụ 
+                        và góp phần phát triển cộng đồng bằng cách siết chặt thêm sự kết nối và sự gắn bó giữa người với người.</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+               
+                <div class="col-lg-6 col-md-6 mb-5 mb-md-5">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Liên hệ</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">Đường Hàn Thuyên, khu phố 6 P, Thủ Đức, Thành phố Hồ Chí Minh</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">coffeeblend@gmail.com</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
             </div>
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    </footer>
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary btn-submit pointer">Lưu lại</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script src="/Assets/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/Assets/js/popper.min.js"></script>
+    <script src="/Assets/js/bootstrap.min.js"></script>
+    <script src="/Assets/js/jquery.easing.1.3.js"></script>
+    <script src="/Assets/js/jquery.waypoints.min.js"></script>
+    <script src="/Assets/js/jquery.stellar.min.js"></script>
+    <script src="/Assets/js/owl.carousel.min.js"></script>
+    <script src="/Assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/Assets/js/aos.js"></script>
+    <script src="/Assets/js/jquery.animateNumber.min.js"></script>
+    <script src="/Assets/js/bootstrap-datepicker.js"></script>
+    <script src="/Assets/js/jquery.timepicker.min.js"></script>
+    <script src="/Assets/js/scrollax.min.js"></script>
+    <script src="/Assets/js/main.js"></script>
+
 </body>
 </html>
