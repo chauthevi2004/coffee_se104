@@ -58,6 +58,17 @@ namespace Coffee.Controllers
             return View(sp);
         }
 
+        public ActionResult ThucDon()
+        {
+
+
+            ViewBag.listDanhMuc = db.DanhMucs.ToList();
+            ViewBag.listSanPham = db.SanPhams.ToList();
+
+
+            return View();
+        }
+
         [HttpPost]
         public ActionResult ThemVaoGio(ChiTietDonHangsDtoEdit model)
         {
