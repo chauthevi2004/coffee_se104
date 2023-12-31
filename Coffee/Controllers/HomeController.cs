@@ -35,7 +35,19 @@ namespace Coffee.Controllers
 
             return View();
         }
+        /// <summary>
+        /// Lấy Sản phẩm theo từng danh mục khi khách hàng kích ở trang chủ, lấy 4 cái 1 lần
+        /// </summary>
+        /// <param name="id_danhmuc"></param>
+        /// <returns></returns>
+        public ActionResult SanPhamTheoDanhMuc(int? id_danhmuc)
+        {
+            List<SanPham> listSanPham;
 
+            listSanPham = db.SanPhams.Where(x => x.id_danhmuc == id_danhmuc).Take(4).ToList();
+
+            return View(listSanPham);
+        }
         public ActionResult ThemVaoGio(ChiTietDonHangsDtoEdit model)
         {
             try
