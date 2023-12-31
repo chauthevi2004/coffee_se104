@@ -48,6 +48,17 @@ namespace Coffee.Controllers
 
             return View(listSanPham);
         }
+
+        public ActionResult PopupDatMon(int id)
+        {
+            SanPham sp;
+
+            sp = db.SanPhams.FirstOrDefault(x => x.id == id);
+
+            return View(sp);
+        }
+
+        [HttpPost]
         public ActionResult ThemVaoGio(ChiTietDonHangsDtoEdit model)
         {
             try

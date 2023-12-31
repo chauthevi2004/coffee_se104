@@ -337,6 +337,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_NavBar.cshtml" />
     <Content Include="Views\Home\SanPhamTheoDanhMuc.cshtml" />
+    <Content Include="Views\Home\PopupDatMon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

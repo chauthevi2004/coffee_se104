@@ -25,6 +25,15 @@
         })
 
         var id_sanpham = 0;
+
+        $('html').on('click', '.btn-try-now', function (e) {
+            e.preventDefault();
+            id_sanpham = $(this).data('id');
+            $.get("/Home/PopupDatMon", { id: $(this).data('id') }, function (html) {
+                openModal("Đặt sản phẩm", html, "frm-dat-mon", "Thêm vào giỏ");
+            })
+        })
+
         //click nút Thêm vào giỏ
         $('#modal').on('click', '.btn-submit', function (e) {
 
