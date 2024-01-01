@@ -49,14 +49,8 @@ namespace Coffee.Controllers
             return View(listSanPham);
         }
 
-        public ActionResult PopupDatMon(int id)
-        {
-            SanPham sp;
-
-            sp = db.SanPhams.FirstOrDefault(x => x.id == id);
-
-            return View(sp);
-        }
+        
+        
 
         public ActionResult ThucDon()
         {
@@ -67,6 +61,15 @@ namespace Coffee.Controllers
 
 
             return View();
+        }
+
+        public ActionResult PopupDatMon(int id)
+        {
+            SanPham sp;
+
+            sp = db.SanPhams.FirstOrDefault(x => x.id == id);
+
+            return View(sp);
         }
 
         [HttpPost]
