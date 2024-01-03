@@ -6,7 +6,7 @@
 }
 
 @using PagedList.Mvc;
-@model PagedList.IPagedList<Coffee.Models.SanPhams>
+@model PagedList.IPagedList<Coffee.Models.SanPham>
 
 
 
@@ -249,7 +249,7 @@
 
                                 <tr class="row_item">
                                     <td><img src="/Assets/images/@item.HinhAnh" height="30" width="30"> @item.TenSanPham</td>
-                                    <td>@item.DanhMucs.TenDanhMuc</td>
+                                    <td>@item.DanhMuc.TenDanhMuc</td>
                                     <td>@string.Format("{0:#,###}", @item.Gia) ₫</td>
                                     <td>
                                         @*<a href="#" class="view" title="View" data-id="@item.id" data-toggle="tooltip"><i class="icon icon-eye"></i></a>*@
