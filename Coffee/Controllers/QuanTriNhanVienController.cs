@@ -33,7 +33,7 @@ namespace Coffee.Controllers
         }
 
         [HttpPost]
-        public ActionResult ThemNhanVien(TaiKhoans taikhoan)
+        public ActionResult ThemNhanVien(TaiKhoan taikhoan)
         {
             taikhoan.NgayTao =DateTime.Now;
             taikhoan.Password = MD5Tool.MD5Hash(taikhoan.Password);
