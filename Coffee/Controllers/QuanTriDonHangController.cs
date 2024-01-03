@@ -15,7 +15,7 @@ namespace Coffee.Controllers
         // GET: QuanTriDonHang
         public ActionResult Index(int? page, int? pageSize = 10)
         {
-            List<DonHangs> donHangs = null;
+            List<DonHang> donHangs = null;
             if (page == null) page = 1;
             donHangs = db.DonHangs.Where(x => x.TrangThai == 0).ToList();
 
