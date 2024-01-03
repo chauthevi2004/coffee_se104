@@ -27,7 +27,7 @@ namespace Coffee.Controllers
 
         public ActionResult ThemSanPham(int? id)
         {
-            SanPhams sp;
+            SanPham sp;
             if (id != null)
             {
 
@@ -36,7 +36,7 @@ namespace Coffee.Controllers
             }
             else
             {
-                sp = new SanPhams();
+                sp = new SanPham();
             }
             ViewBag.DanhMucs = db.DanhMucs.ToList();
 
@@ -60,7 +60,7 @@ namespace Coffee.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult ThemSanPham(SanPhams sanPham)
+        public ActionResult ThemSanPham(SanPham sanPham)
         {
             string fileNameTemp = ""; //Tên file ảnh nếu có
             //xử lý upload ảnh
@@ -128,7 +128,7 @@ namespace Coffee.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult ThemDanhMuc(DanhMucs danhmuc)
+        public ActionResult ThemDanhMuc(DanhMuc danhmuc)
         {
 
             db.DanhMucs.Add(danhmuc);
