@@ -3,10 +3,7 @@
     ViewBag.Title = "Thông tin sản phẩm";
 }
 
-
-
-
-@model Coffee.Models.SanPhams
+@model Coffee.Models.SanPham
 
 <script>
     $(document).ready(function () {
@@ -31,7 +28,7 @@
         //click nút Thêm vào giỏ
         $('html').on('click', '.btn-add-card', function (e) {
             e.preventDefault();
-            
+
             var formData = new FormData();
 
             var SoLuong = $("input[name='SoLuong']").val();
@@ -81,11 +78,11 @@
                             <div class="select-wrap">
                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                 @*<select name="" id="" class="form-control">
-                            <option value="">Small</option>
-                            <option value="">Medium</option>
-                            <option value="">Large</option>
-                            <option value="">Extra Large</option>
-                        </select>*@
+                                        <option value="">Small</option>
+                                        <option value="">Medium</option>
+                                        <option value="">Large</option>
+                                        <option value="">Extra Large</option>
+                                    </select>*@
                                 @Html.DropDownList("Size", new SelectList(ViewBag.Sizes, "Text", "Text"), new { @class = "form-control" })
                             </div>
                         </div>
