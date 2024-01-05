@@ -38,5 +38,13 @@ namespace Coffee.Controllers
             db.SaveChanges();
             return View("ChiTietDonHang", donHang);
         }
+        [HttpPost]
+        public ActionResult HuyDonHang(int? id)
+        {
+            var donHang = db.DonHangs.FirstOrDefault(x => x.id == id);
+            donHang.TrangThai = -1; //Đã xác nhận
+            db.SaveChanges();
+            return Json(new {message = "Đã hủy đơn hàng thành công !"});
+        }
     }
 }
