@@ -35,6 +35,7 @@ namespace Coffee.Controllers
 
             return View();
         }
+
         /// <summary>
         /// Lấy Sản phẩm theo từng danh mục khi khách hàng kích ở trang chủ, lấy 4 cái 1 lần
         /// </summary>
@@ -49,15 +50,25 @@ namespace Coffee.Controllers
             return View(listSanPham);
         }
 
-        
-        
-
-        public ActionResult ThucDon()
+        public ActionResult ThucDon(string searchKey = "", int? tienMin = null, int? tienMax = null)
         {
 
-
+            ViewBag.searchKey = searchKey;
+            ViewBag.tienMin = tienMin;
+            ViewBag.tienMax = tienMax;
             ViewBag.listDanhMuc = db.DanhMucs.ToList();
-            ViewBag.listSanPham = db.SanPhams.ToList();
+            var lstSP = db.SanPhams
+                .Where(x => x.TenSanPham.ToLower().Contains(searchKey.ToLower()) || searchKey == "");
+            if(tienMin != null)
+            {
+                lstSP = lstSP.Where(x => x.Gia >= tienMin);
+            }
+            if (tienMax != null)
+            {
+                lstSP = lstSP.Where(x => x.Gia <= tienMax);
+            }
+
+            ViewBag.listSanPham = lstSP.ToList();
 
 
             return View();
